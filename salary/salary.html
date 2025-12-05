@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Salary Slip Generator</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f0e8; /* Soft cream background */
+            height: 100vh;
+            margin: 0;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 380px;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            border-top: 6px solid #8c6a28; /* Gold */
+        }
+
+        h2 {
+            color: #4a4a4a; /* Dark gray */
+            text-align: center;
+        }
+
+        label {
+            font-weight: bold;
+            color: #5a5a5a;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #b8b8b8;
+            border-radius: 5px;
+            background: #faf9f6;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #8c6a28; /* Gold */
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 6px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #6d521f; /* Darker gold */
+        }
+
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f3f8ef;
+            border-left: 6px solid #3b7a2a; /* Professional green */
+            border-radius: 5px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Salary Slip Generator</h2>
+
+    <label>Employee Name</label>
+    <input type="text" id="name">
+
+    <label>Department</label>
+    <input type="text" id="dept">
+
+    <label>Basic Salary</label>
+    <input type="number" id="basic">
+
+    <button onclick="generateSlip()">Generate Salary Slip</button>
+
+    <div id="result"></div>
+</div>
+
+<script>
+function generateSlip() {
+    let name = document.getElementById("name").value;
+    let dept = document.getElementById("dept").value;
+    let basic = parseFloat(document.getElementById("basic").value);
+
+    if (name === "" || dept === "" || isNaN(basic)) {
+        alert("Please fill all fields correctly!");
+        return;
+    }
+
+    let hra = basic * 0.10;
+    let pf = basic * 0.05;
+    let net = basic + hra - pf;
+
+    let message = `
+        <h3 style="color:#4a4a4a;">Hello ${name}, Salary Slip</h3>
+        <p><b>Department:</b> ${dept}</p>
+        <p><b>Basic Salary:</b> ₹${basic}</p>
+        <p><b>HRA (10%):</b> ₹${hra.toFixed(2)}</p>
+        <p><b>PF (5%):</b> ₹${pf.toFixed(2)}</p>
+        <p><b>Net Salary:</b> <b>₹${net.toFixed(2)}</b></p>
+    `;
+
+    let result = document.getElementById("result");
+    result.innerHTML = message;
+    result.style.display = "block";
+}
+</script>
+
+</body>
+</html>
