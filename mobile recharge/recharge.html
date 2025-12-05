@@ -3,7 +3,6 @@
 <head>
     <title>Mobile Recharge</title>
     <style>
-
         body {
             font-family: Arial, sans-serif;
             background-color: #f5f5f5;
@@ -50,49 +49,46 @@
             cursor: pointer;
         }
 
-        button:hover {
-            opacity: 0.8;
-        }
-
         #success {
             display: none;
         }
-        #success:target {
+        #success.show {
             display: block;
             color: green;
             font-size: 20px;
             font-weight: bold;
         }
-
     </style>
 </head>
+
 <body>
 
-    <header>
-        <h1>Mobile Recharge Application</h1>
-    </header>
+<header>
+    <h1>Mobile Recharge Application</h1>
+</header>
 
-    <nav>
-        <a href="#login">Login</a> |
-        <a href="#signup">Signup</a> |
-        <a href="#dashboard">Dashboard</a> |
-        <a href="#recharge">Recharge</a>
-    </nav>
+<nav>
+    <a href="#login">Login</a> |
+    <a href="#signup">Signup</a> |
+    <a href="#dashboard">Dashboard</a> |
+    <a href="#recharge">Recharge</a>
+</nav>
 
-    <main>
+<main>
 
-        <!-- RECHARGE -->
-        <section id="recharge">
-            <h2 style="color:#c2870a;">Mobile Recharge</h2>
+    <!-- RECHARGE -->
+    <section id="recharge">
+        <h2 style="color:#c2870a;">Mobile Recharge</h2>
 
-            <div class="box">
-            <form action="#success">
+        <div class="box">
+            <form id="rechargeForm">
 
                 <label>Mobile Number:</label>
-                <input type="text">
+                <input type="text" id="mobile">
 
                 <label>Operator:</label>
-                <select>
+                <select id="operator">
+                    <option value="">Select</option>
                     <option>Jio</option>
                     <option>Airtel</option>
                     <option>BSNL</option>
@@ -100,26 +96,57 @@
                 </select>
 
                 <label>Amount:</label>
-                <input type="number">
+                <input type="number" id="amount">
 
                 <button type="submit">Recharge</button>
             </form>
-            </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- SUCCESS MESSAGE -->
-        <section id="success">
-            <br>
-            ✔ Recharge Successful!
-            <br><br>
-            <a href="#dashboard"><button>Return to Dashboard</button></a>
-        </section>
+    <section id="success">
+        ✔ Recharge Successful!
+        <br><br>
+        <button onclick="window.location.href='#dashboard'">Return to Dashboard</button>
+    </section>
 
-    </main>
+</main>
 
-    <footer>
-        <p>© 2025 Mobile Recharge App</p>
-    </footer>
+<footer>
+    <p>© 2025 Mobile Recharge App</p>
+</footer>
+
+
+<!-- ⭐ JavaScript Validation -->
+<script>
+document.getElementById("rechargeForm").addEventListener("submit", function(event) {
+    event.preventDefault();  // stops page refresh
+
+    let mobile = document.getElementById("mobile").value.trim();
+    let operator = document.getElementById("operator").value;
+    let amount = document.getElementById("amount").value;
+
+    // Mobile number validation (10 digits)
+    if (!/^[0-9]{10}$/.test(mobile)) {
+        alert("Please enter a valid 10-digit mobile number.");
+        return;
+    }
+
+    // Operator validation
+    if (operator === "") {
+        alert("Please select your mobile operator.");
+        return;
+    }
+
+    // Amount validation
+    if (amount === "" || amount <= 0) {
+        alert("Please enter a valid recharge amount.");
+        return;
+    }
+
+    // If everything is valid → show success message
+    document.getElementById("success").classList.add("show");
+});
+</script>
 
 </body>
 </html>
