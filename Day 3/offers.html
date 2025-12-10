@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Recharge - Offers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="surface-bg text-color">
+    <!-- Navbar -->
+    <nav class="primary-gradient p-4">
+        <div class="container mx-auto flex justify-center space-x-4">
+            <a href="index.html" class="secondary-bg hover:bg-opacity-80 text-white font-bold py-2 px-4 rounded transition duration-300">Home</a>
+            <a href="recharge.html" class="secondary-bg hover:bg-opacity-80 text-white font-bold py-2 px-4 rounded transition duration-300">Recharge</a>
+            <a href="plans.html" class="secondary-bg hover:bg-opacity-80 text-white font-bold py-2 px-4 rounded transition duration-300">Plans</a>
+            <a href="offers.html" class="secondary-bg hover:bg-opacity-80 text-white font-bold py-2 px-4 rounded transition duration-300">Offers</a>
+            <a href="login.html" class="secondary-bg hover:bg-opacity-80 text-white font-bold py-2 px-4 rounded transition duration-300">Login</a>
+        </div>
+    </nav>
+
+    <!-- Offers Section -->
+    <section class="container mx-auto py-20 px-4">
+        <h2 class="text-3xl font-bold text-center secondary-text mb-10">Best Offers</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Offer 1 -->
+            <div class="bg-white p-6 rounded-lg shadow-lg relative">
+                <span class="absolute top-0 right-0 accent-bg text-white px-2 py-1 rounded-bl-lg font-bold">20% Off</span>
+                <h3 class="text-xl font-bold secondary-text mb-2">Recharge ₹500, Get ₹100 Cashback</h3>
+                <p class="text-color mb-4">Valid for all operators. Limited time offer.</p>
+                <button class="primary-gradient text-white font-bold py-2 px-4 rounded-lg transition duration-300 shadow-lg" onclick="alert('Offer claimed!')">🎁 Claim Offer</button>
+            </div>
+            <!-- Offer 2 -->
+            <div class="bg-white p-6 rounded-lg shadow-lg relative">
+                <span class="absolute top-0 right-0 accent-bg text-white px-2 py-1 rounded-bl-lg font-bold">15% Off</span>
+                <h3 class="text-xl font-bold secondary-text mb-2">Extra Data on Recharge</h3>
+                <p class="text-color mb-4">Get 50% extra data on plans above ₹300.</p>
+                <button class="primary-gradient text-white font-bold py-2 px-4 rounded-lg transition duration-300 shadow-lg">🎁 Claim Offer</button>
+            </div>
+            <!-- Offer 3 -->
+            <div class="bg-white p-6 rounded-lg shadow-lg relative">
+                <span class="absolute top-0 right-0 accent-bg text-white px-2 py-1 rounded-bl-lg font-bold">Free</span>
+                <h3 class="text-xl font-bold secondary-text mb-2">Free OTT Subscription</h3>
+                <p class="text-color mb-4">Get free Netflix subscription with ₹1000 recharge.</p>
+                <button class="primary-gradient text-white font-bold py-2 px-4 rounded-lg transition duration-300 shadow-lg">🎁 Claim Offer</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="primary-gradient text-white text-center py-4">
+        <p>&copy; 2023 Mobile Recharge App. All rights reserved.</p>
+    </footer>
+</body>
+</html>

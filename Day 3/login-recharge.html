@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Recharge - Login Required</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Force professional colors to override Tailwind */
+        .primary-gradient-force {
+            background: linear-gradient(135deg, #059669, #10B981) !important;
+        }
+        .secondary-bg-force {
+            background-color: #059669 !important;
+        }
+        .secondary-text-force {
+            color: #059669 !important;
+        }
+        .accent-bg-force {
+            background-color: #F59E0B !important;
+        }
+        .surface-bg-force {
+            background-color: #F8FAFC !important;
+        }
+        .text-color-force {
+            color: #1E293B !important;
+        }
+        .success-text-force {
+            color: #059669 !important;
+        }
+        
+        /* CHANGE TEXT COLOR - This will make nav text white */
+        nav a {
+            color: white !important;
+        }
+        
+        /* Change hover color if needed */
+        nav a:hover {
+            color: #F0FDF4 !important; /* Light green on hover */
+        }
+        
+        /* Specifically target the active/current page */
+        nav a.bg-opacity-80 {
+            background-color: rgba(255, 255, 255, 0.2) !important;
+        }
+    </style>
+</head>
+<body class="surface-bg text-color surface-bg-force">
+    <!-- Navbar -->
+    <nav class="primary-gradient p-4 primary-gradient-force">
+        <div class="container mx-auto flex justify-center space-x-4">
+            <a href="index.html" class="secondary-bg hover:bg-opacity-80 text-white font-bold py-2 px-4 rounded transition duration-300 secondary-bg-force">Home</a>
+            <a href="login-required.html" class="secondary-bg hover:bg-opacity-80 text-white font-bold py-2 px-4 rounded transition duration-300 secondary-bg-force">Recharge</a>
+            <a href="plans.html" class="secondary-bg hover:bg-opacity-80 text-white font-bold py-2 px-4 rounded transition duration-300 secondary-bg-force">Plans</a>
+            <a href="offers.html" class="secondary-bg hover:bg-opacity-80 text-white font-bold py-2 px-4 rounded transition duration-300 secondary-bg-force">Offers</a>
+            <a href="login.html" class="secondary-bg hover:bg-opacity-80 text-white font-bold py-2 px-4 rounded transition duration-300 secondary-bg-force">Login</a>
+        </div>
+    </nav>
+
+    <!-- Login Required Message -->
+    <section class="container mx-auto py-20 px-4">
+        <div class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-lg text-center">
+            <div class="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <span class="text-3xl">🔒</span>
+            </div>
+            <h2 class="text-2xl font-bold secondary-text mb-4 secondary-text-force">Login Required for Recharge</h2>
+            <p class="text-color-force mb-8 max-w-md mx-auto">You need to create an account or login to access the recharge feature. This ensures secure transactions and saves your recharge history.</p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="signup.html" class="primary-gradient text-white font-bold py-3 px-8 rounded-lg transition duration-300 shadow-lg primary-gradient-force">
+                    🚀 Create Account
+                </a>
+                <a href="login.html" class="secondary-bg-force text-white font-bold py-3 px-8 rounded-lg transition duration-300 shadow-lg">
+                    👤 Login
+                </a>
+            </div>
+            
+            <div class="mt-10 pt-8 border-t border-gray-200">
+                <h3 class="text-lg font-bold mb-4 secondary-text-force">Benefits of Creating Account:</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="p-4">
+                        <div class="text-xl mb-2">⚡</div>
+                        <p class="text-sm text-color-force">Instant recharge activation</p>
+                    </div>
+                    <div class="p-4">
+                        <div class="text-xl mb-2">🛡️</div>
+                        <p class="text-sm text-color-force">Secure payment gateway</p>
+                    </div>
+                    <div class="p-4">
+                        <div class="text-xl mb-2">📱</div>
+                        <p class="text-sm text-color-force">Save multiple numbers</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="primary-gradient text-white text-center py-4 primary-gradient-force">
+        <p>&copy; 2024 Mobile Recharge App. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+[file content end]
