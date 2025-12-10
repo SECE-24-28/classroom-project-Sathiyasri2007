@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Recharge - Recharge</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Force professional colors to override Tailwind */
+        .primary-gradient-force {
+            background: linear-gradient(135deg, #059669, #10B981) !important;
+        }
+        .secondary-bg-force {
+            background-color: #059669 !important;
+        }
+        .secondary-text-force {
+            color: #059669 !important;
+        }
+        .accent-bg-force {
+            background-color: #F59E0B !important;
+        }
+        .surface-bg-force {
+            background-color: #F8FAFC !important;
+        }
+        .text-color-force {
+            color: #1E293B !important;
+        }
+        .success-text-force {
+            color: #059669 !important;
+        }
+        
+        /* CHANGE TEXT COLOR - This will make nav text white */
+        nav a {
+            color: white !important;
+        }
+        
+        /* Change hover color if needed */
+        nav a:hover {
+            color: #F0FDF4 !important; /* Light green on hover */
+        }
+        
+        /* Specifically target the active/current page */
+        nav a.bg-opacity-80 {
+            background-color: rgba(255, 255, 255, 0.2) !important;
+        }
+    </style>
+</head>
+<body class="surface-bg text-color surface-bg-force">
+    <!-- Navbar -->
+    <nav class="primary-gradient p-4 primary-gradient-force">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex space-x-4">
+                <a href="index.html" class="secondary-bg hover:bg-opacity-80 text-white font-bold py-2 px-4 rounded transition duration-300 secondary-bg-force">Home</a>
+                <a href="recharge.html" class="secondary-bg hover:bg-opacity-80 text-white font-bold py-2 px-4 rounded transition duration-300 secondary-bg-force">Recharge</a>
+                <a href="plans.html" class="secondary-bg hover:bg-opacity-80 text-white font-bold py-2 px-4 rounded transition duration-300 secondary-bg-force">Plans</a>
+                <a href="offers.html" class="secondary-bg hover:bg-opacity-80 text-white font-bold py-2 px-4 rounded transition duration-300 secondary-bg-force">Offers</a>
+            </div>
+            <button onclick="logout()" class="secondary-bg hover:bg-opacity-80 text-white font-bold py-2 px-4 rounded transition duration-300 secondary-bg-force">Logout</button>
+        </div>
+    </nav>
+
+    <!-- Actual Recharge Form -->
+    <section class="container mx-auto py-20 px-4">
+        <div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-bold text-center secondary-text mb-6 secondary-text-force">Mobile Recharge</h2>
+            <form action="success.html" method="get">
+                <div class="mb-4">
+                    <label for="mobile" class="block text-color font-bold mb-2 text-color-force">Mobile Number</label>
+                    <input type="tel" id="mobile" name="mobile" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-opacity-50 focus-ring-secondary" placeholder="Enter 10-digit mobile number" pattern="[0-9]{10}" required>
+                </div>
+                <div class="mb-4">
+                    <label for="operator" class="block text-color font-bold mb-2 text-color-force">Select Operator</label>
+                    <select id="operator" name="operator" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-opacity-50 focus-ring-secondary" required>
+                        <option value="">-- Select Operator --</option>
+                        <option value="airtel">Airtel</option>
+                        <option value="jio">Jio</option>
+                        <option value="vi">VI</option>
+                        <option value="bsnl">BSNL</option>
+                        <option value="mtnl">MTNL</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label for="amount" class="block text-color font-bold mb-2 text-color-force">Recharge Amount (₹)</label>
+                    <input type="number" id="amount" name="amount" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-opacity-50 focus-ring-secondary" placeholder="Enter amount" min="10" max="5000" required>
+                    <p class="text-sm text-gray-500 mt-1">Amount between ₹10 to ₹5000</p>
+                </div>
+                <div class="mb-6">
+                    <label for="payment" class="block text-color font-bold mb-2 text-color-force">Payment Method</label>
+                    <select id="payment" name="payment" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-opacity-50 focus-ring-secondary" required>
+                        <option value="">-- Select Payment Method --</option>
+                        <option value="upi">UPI (Google Pay, PhonePe, etc.)</option>
+                        <option value="card">Credit/Debit Card</option>
+                        <option value="netbanking">Net Banking</option>
+                        <option value="wallet">Wallet (Paytm, Amazon Pay)</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full primary-gradient text-white font-bold py-3 px-4 rounded-lg transition duration-300 shadow-lg primary-gradient-force hover:opacity-90">
+                    Proceed to Payment
+                </button>
+            </form>
+            
+            <div class="mt-8 pt-6 border-t border-gray-200">
+                <h3 class="text-lg font-bold mb-3 secondary-text-force">Quick Recharge Options:</h3>
+                <div class="grid grid-cols-3 gap-2 mb-4">
+                    <button type="button" class="py-2 bg-gray-100 hover:bg-emerald-50 rounded-lg transition" onclick="document.getElementById('amount').value='199'">₹199</button>
+                    <button type="button" class="py-2 bg-gray-100 hover:bg-emerald-50 rounded-lg transition" onclick="document.getElementById('amount').value='299'">₹299</button>
+                    <button type="button" class="py-2 bg-gray-100 hover:bg-emerald-50 rounded-lg transition" onclick="document.getElementById('amount').value='499'">₹499</button>
+                </div>
+            </div>
+            
+            <div class="mt-6 text-center">
+                <a href="plans.html" class="secondary-text hover:underline secondary-text-force">View Plans</a>
+                <span class="mx-2">•</span>
+                <a href="offers.html" class="secondary-text hover:underline secondary-text-force">View Offers</a>
+                <span class="mx-2">•</span>
+                <a href="index.html" class="secondary-text hover:underline secondary-text-force">Home</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="primary-gradient text-white text-center py-4 primary-gradient-force">
+        <p>&copy; 2024 Mobile Recharge App. All rights reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

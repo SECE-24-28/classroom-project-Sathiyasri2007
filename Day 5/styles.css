@@ -1,0 +1,218 @@
+/* Custom CSS for Mobile Recharge App */
+/* Minimal styles not covered by Tailwind - PROFESSIONAL VERSION */
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Custom hover effect for buttons if needed */
+.btn-custom:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* PROFESSIONAL COLOR SCHEME */
+/* Green Gradient + Purple + Amber */
+:root {
+    --primary-start: #059669; /* Deep Emerald */
+    --primary-end: #10B981;   /* Vibrant Emerald */
+    --secondary: #059669;     /* Royal Purple */
+    --accent: #F59E0B;        /* Warm Amber */
+    --background: #FFFFFF;
+    --surface: #F8FAFC;       /* Light Gray-Blue */
+    --text: #1E293B;          /* Dark Slate */
+    --success: #059669;
+    --light-green: #D1FAE5;
+    --light-purple: #EDE9FE;
+    --light-amber: #FEF3C7;
+}
+
+/* Custom classes for new color scheme */
+.primary-gradient {
+    background: linear-gradient(135deg, var(--primary-start), var(--primary-end));
+}
+
+.secondary-bg {
+    background-color: var(--secondary);
+}
+
+.secondary-text {
+    color: var(--secondary);
+}
+
+.accent-bg {
+    background-color: var(--accent);
+}
+
+.accent-text {
+    color: var(--accent);
+}
+
+.surface-bg {
+    background-color: var(--surface);
+}
+
+.text-color {
+    color: var(--text);
+}
+
+.success-text {
+    color: var(--success);
+}
+
+/* Custom focus ring classes */
+.focus-ring-secondary {
+    --tw-ring-color: var(--secondary);
+}
+
+/* FIX FOR BUTTONS - Make them look clickable without JS */
+.primary-gradient, .secondary-bg, .accent-bg {
+    position: relative;
+    overflow: hidden;
+}
+
+.primary-gradient:active, .secondary-bg:active, .accent-bg:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Fix for Claim Offer and Select Plan buttons to navigate */
+.primary-gradient[onclick], 
+.accent-bg[onclick],
+button.primary-gradient,
+button.accent-bg,
+button.secondary-bg {
+    cursor: pointer;
+}
+
+/* Professional hover effects */
+.primary-gradient:hover, .secondary-bg:hover, .accent-bg:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+    transition: all 0.2s ease;
+}
+
+/* Professional card styling for offers and plans */
+.bg-white {
+    border: 1px solid #E5E7EB;
+}
+
+.relative {
+    border-top: 3px solid var(--accent);
+}
+
+/* Success page professional styling */
+.success-bg {
+    background-color: var(--light-green);
+    border: 2px solid var(--success);
+}
+
+/* Professional form styling */
+input:focus, select:focus {
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+/* Navigation professional styling */
+nav {
+    border-bottom: 3px solid var(--secondary);
+}
+
+/* Hero section professional styling */
+.hero {
+    background: linear-gradient(to bottom, #F0FDF4, #FFFFFF);
+}
+
+/* Make the Recharge Now button stand out */
+a.primary-gradient {
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* Professional footer */
+footer {
+    border-top: 3px solid var(--primary-start);
+    margin-top: 3rem;
+}
+
+/* Responsive improvements */
+@media (max-width: 640px) {
+    nav .flex {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    nav a {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.875rem;
+    }
+    
+    .grid {
+        gap: 1rem;
+    }
+}
+
+/* Add subtle animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.container {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Professional spacing for sections */
+section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+/* Make the badge look professional */
+.absolute {
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Professional button states */
+button:disabled, button[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Professional link styling */
+a {
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Professional table-like layout for plans */
+.bg-white.rounded-lg.shadow-lg {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bg-white.rounded-lg.shadow-lg:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Professional form labels */
+label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+/* Make the year in copyright current */
+footer p::after {
+    content: "2024";
+}
+
+footer p::after {
+    content: "2024";
+}

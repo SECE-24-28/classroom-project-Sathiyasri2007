@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Recharge - Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Force professional colors to override Tailwind */
+        .primary-gradient-force {
+            background: linear-gradient(135deg, #059669, #10B981) !important;
+        }
+        .secondary-bg-force {
+            background-color: #059669 !important;
+        }
+        .secondary-text-force {
+            color: #059669 !important;
+        }
+        .accent-bg-force {
+            background-color: #F59E0B !important;
+        }
+        .surface-bg-force {
+            background-color: #F8FAFC !important;
+        }
+        .text-color-force {
+            color: #1E293B !important;
+        }
+        .success-text-force {
+            color: #059669 !important;
+        }
+        
+        /* CHANGE TEXT COLOR - This will make nav text white */
+        nav a {
+            color: white !important;
+        }
+        
+        /* Change hover color if needed */
+        nav a:hover {
+            color: #F0FDF4 !important; /* Light green on hover */
+        }
+        
+        /* Specifically target the active/current page */
+        nav a.bg-opacity-80 {
+            background-color: rgba(255, 255, 255, 0.2) !important;
+        }
+    </style>
+</head>
+<body class="surface-bg text-color surface-bg-force">
+    <!-- Navbar -->
+    <nav class="primary-gradient p-4 primary-gradient-force">
+        <div class="container mx-auto flex justify-center space-x-4">
+            <a href="index.html" class="secondary-bg hover:bg-opacity-80 text-white font-bold py-2 px-4 rounded transition duration-300 secondary-bg-force">Home</a>
+            <a href="recharge.html" class="secondary-bg hover:bg-opacity-80 text-white font-bold py-2 px-4 rounded transition duration-300 secondary-bg-force">Recharge Now</a>
+            <a href="plans.html" class="secondary-bg hover:bg-opacity-80 text-white font-bold py-2 px-4 rounded transition duration-300 secondary-bg-force">Premium Plans</a>
+            <a href="offers.html" class="secondary-bg hover:bg-opacity-80 text-white font-bold py-2 px-4 rounded transition duration-300 secondary-bg-force">Special Offers</a>
+            <a href="signup.html" class="secondary-bg hover:bg-opacity-80 text-white font-bold py-2 px-4 rounded transition duration-300 secondary-bg-force">Get Started</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero bg-white py-20">
+        <div class="container mx-auto text-center">
+            <h1 class="text-4xl md:text-6xl font-bold secondary-text mb-4 secondary-text-force">Instant Mobile Recharge Platform</h1>
+            <p class="text-lg md:text-xl text-color mb-8 text-color-force">Experience lightning-fast, secure mobile top-ups with guaranteed instant activation across all major operators.</p>
+            <a href="recharge.html" class="primary-gradient text-white font-bold py-3 px-6 rounded-lg transition duration-300 shadow-lg primary-gradient-force">⚡ Start Recharging Now</a>
+        </div>
+    </section>
+
+    <!-- Professional Features Section -->
+    <section class="container mx-auto py-20 px-4">
+        <h2 class="text-3xl font-bold text-center secondary-text mb-10 secondary-text-force">Why Choose Our Service?</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Feature 1 -->
+            <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                <div class="text-3xl mb-4">⚡</div>
+                <h3 class="text-xl font-bold mb-3 secondary-text-force">Instant Activation</h3>
+                <p class="text-color-force">Recharges processed within seconds with 99.9% success rate guarantee.</p>
+            </div>
+            
+            <!-- Feature 2 -->
+            <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                <div class="text-3xl mb-4">🛡️</div>
+                <h3 class="text-xl font-bold mb-3 secondary-text-force">Bank-Grade Security</h3>
+                <p class="text-color-force">256-bit SSL encryption ensures your payments are completely secure.</p>
+            </div>
+            
+            <!-- Feature 3 -->
+            <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                <div class="text-3xl mb-4">📱</div>
+                <h3 class="text-xl font-bold mb-3 secondary-text-force">All Operators</h3>
+                <p class="text-color-force">Support for Airtel, Jio, VI, BSNL and all major telecom providers.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="bg-emerald-50 py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-2xl font-bold mb-6 secondary-text-force">Ready to Get Started?</h2>
+            <p class="text-lg text-color-force mb-8 max-w-2xl mx-auto">Join thousands of satisfied customers who trust us for their daily mobile recharge needs.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="recharge.html" class="primary-gradient text-white font-bold py-3 px-8 rounded-lg transition duration-300 shadow-lg primary-gradient-force">
+                    ⚡ Instant Recharge
+                </a>
+                <a href="signup.html" class="secondary-bg-force text-white font-bold py-3 px-8 rounded-lg transition duration-300 shadow-lg">
+                    🚀 Create Account
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="primary-gradient text-white text-center py-4 mt-20 primary-gradient-force">
+        <p>&copy; 2025 Mobile Recharge App. All rights reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

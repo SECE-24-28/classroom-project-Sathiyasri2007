@@ -1,0 +1,480 @@
+<!-- plans.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Recharge - Plans</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        /* Force professional colors to override Tailwind */
+        .primary-gradient-force {
+            background: linear-gradient(135deg, #059669, #10B981) !important;
+        }
+        .secondary-bg-force {
+            background-color: #059669 !important;
+        }
+        .secondary-text-force {
+            color: #059669 !important;
+        }
+        .accent-bg-force {
+            background-color: #F59E0B !important;
+        }
+        .surface-bg-force {
+            background-color: #F8FAFC !important;
+        }
+        .text-color-force {
+            color: #1E293B !important;
+        }
+        .success-text-force {
+            color: #059669 !important;
+        }
+        
+        /* CHANGE TEXT COLOR - This will make nav text white */
+        nav a {
+            color: white !important;
+        }
+        
+        /* Change hover color if needed */
+        nav a:hover {
+            color: #F0FDF4 !important; /* Light green on hover */
+        }
+        
+        /* Specifically target the active/current page */
+        nav a.bg-opacity-80 {
+            background-color: rgba(255, 255, 255, 0.2) !important;
+        }
+        
+        /* Plan card hover effect */
+        .plan-card {
+            transition: 0.3s ease-in-out;
+        }
+        .plan-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(5, 150, 105, 0.15);
+        }
+        
+        /* Loading spinner */
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #059669;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Plan badges */
+        .plan-badge {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .prepaid-badge {
+            background-color: #D1FAE5;
+            color: #059669;
+        }
+        
+        .postpaid-badge {
+            background-color: #EDE9FE;
+            color: #7C3AED;
+        }
+        
+        /* Filter buttons */
+        .filter-btn {
+            transition: all 0.2s ease;
+        }
+        
+        .filter-btn.active {
+            background-color: #059669 !important;
+            color: white !important;
+        }
+        
+        /* Modal backdrop */
+        .modal-backdrop {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+
+<body class="surface-bg text-color surface-bg-force">
+    
+    <!-- Navbar -->
+    <nav class="primary-gradient p-4 primary-gradient-force">
+        <div class="container mx-auto flex justify-center space-x-4">
+            <a href="index.html" class="secondary-bg hover:bg-opacity-80 text-white font-bold py-2 px-4 rounded transition duration-300 secondary-bg-force">Home</a>
+            <a href="recharge.html" class="secondary-bg hover:bg-opacity-80 text-white font-bold py-2 px-4 rounded transition duration-300 secondary-bg-force">Recharge</a>
+            <a href="plans.html" class="secondary-bg hover:bg-opacity-80 text-white font-bold py-2 px-4 rounded transition duration-300 secondary-bg-force">Plans</a>
+            <a href="offers.html" class="secondary-bg hover:bg-opacity-80 text-white font-bold py-2 px-4 rounded transition duration-300 secondary-bg-force">Offers</a>
+            <a href="login.html" class="secondary-bg hover:bg-opacity-80 text-white font-bold py-2 px-4 rounded transition duration-300 secondary-bg-force">Login</a>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <div class="primary-gradient text-white p-5 text-center text-2xl font-bold shadow-lg primary-gradient-force">
+        Recharge Plans
+        <p class="text-lg font-normal mt-2 text-white opacity-90">Choose from a wide range of prepaid & postpaid plans</p>
+    </div>
+
+    <!-- Filter Buttons -->
+    <div class="flex flex-wrap justify-center gap-3 p-4">
+        <button class="filter-btn bg-emerald-600 text-white px-4 py-2 rounded-lg font-medium active" data-filter="all">All Plans</button>
+        <button class="filter-btn bg-gray-200 text-gray-800 px-4 py-2 rounded-lg font-medium hover:bg-emerald-100" data-filter="prepaid">Prepaid</button>
+        <button class="filter-btn bg-gray-200 text-gray-800 px-4 py-2 rounded-lg font-medium hover:bg-emerald-100" data-filter="postpaid">Postpaid</button>
+        <button class="filter-btn bg-red-100 text-red-700 px-4 py-2 rounded-lg font-medium hover:bg-red-200" data-filter="airtel">Airtel</button>
+        <button class="filter-btn bg-blue-100 text-blue-700 px-4 py-2 rounded-lg font-medium hover:bg-blue-200" data-filter="jio">Jio</button>
+        <button class="filter-btn bg-purple-100 text-purple-700 px-4 py-2 rounded-lg font-medium hover:bg-purple-200" data-filter="vi">VI</button>
+    </div>
+
+    <!-- Loading State -->
+    <div id="loading" class="text-center py-12">
+        <div class="loading-spinner mb-4"></div>
+        <p class="text-color-force">Loading recharge plans from API...</p>
+    </div>
+
+    <!-- Plans Container -->
+    <div id="plans-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+        <!-- Plans will load here dynamically -->
+    </div>
+
+    <!-- Selected Plan Modal -->
+    <div id="selected-plan-modal" class="fixed inset-0 modal-backdrop flex items-center justify-center z-50 hidden">
+        <div class="bg-white p-6 rounded-lg shadow-xl max-w-md w-full mx-4">
+            <h3 class="text-xl font-bold mb-4 secondary-text-force">Selected Plan Details</h3>
+            <div id="plan-details" class="mb-6">
+                <!-- Plan details will be inserted here -->
+            </div>
+            <div class="flex gap-3">
+                <button id="proceed-payment" class="flex-1 primary-gradient text-white font-bold py-3 px-4 rounded-lg transition duration-300 primary-gradient-force hover:opacity-90">
+                    Proceed to Payment
+                </button>
+                <button id="cancel-selection" class="flex-1 bg-gray-300 text-gray-700 font-bold py-3 px-4 rounded-lg transition duration-300 hover:bg-gray-400">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ====== CONFIGURATION ======
+        const MOCKAPI_URL = "https://6932abe7e5a9e342d2706010.mockapi.io/api/v1/plan";
+        
+        // Fallback plans in case API fails
+        const backupPlans = [
+            { 
+                id: "1", 
+                type: "prepaid", 
+                operator: "All Networks", 
+                price: 199, 
+                validity: "28 Days", 
+                data: "1.5GB/day",
+                description: "Unlimited calls + 100 SMS/day"
+            },
+            { 
+                id: "2", 
+                type: "prepaid", 
+                operator: "All Networks", 
+                price: 299, 
+                validity: "28 Days", 
+                data: "2GB/day",
+                description: "Unlimited calls + 100 SMS/day"
+            },
+            { 
+                id: "3", 
+                type: "prepaid", 
+                operator: "All Networks", 
+                price: 399, 
+                validity: "56 Days", 
+                data: "2.5GB/day",
+                description: "Unlimited calls + 200 SMS/day"
+            },
+            { 
+                id: "4", 
+                type: "postpaid", 
+                operator: "All Networks", 
+                price: 599, 
+                validity: "Monthly", 
+                data: "Unlimited",
+                description: "Unlimited calls + 500 SMS"
+            },
+            { 
+                id: "5", 
+                type: "prepaid", 
+                operator: "Airtel", 
+                price: 249, 
+                validity: "24 Days", 
+                data: "1GB/day",
+                description: "Unlimited calls + Disney+ Hotstar"
+            },
+            { 
+                id: "6", 
+                type: "prepaid", 
+                operator: "Jio", 
+                price: 349, 
+                validity: "28 Days", 
+                data: "1.5GB/day",
+                description: "Unlimited calls + Amazon Prime"
+            },
+            { 
+                id: "7", 
+                type: "prepaid", 
+                operator: "VI", 
+                price: 199, 
+                validity: "28 Days", 
+                data: "2GB/day",
+                description: "Unlimited calls + Zee5"
+            },
+            { 
+                id: "8", 
+                type: "postpaid", 
+                operator: "All Networks", 
+                price: 799, 
+                validity: "Monthly", 
+                data: "Unlimited",
+                description: "Unlimited calls + Netflix Mobile"
+            }
+        ];
+
+        let allPlans = [];
+        let selectedPlan = null;
+
+        // ====== FETCH PLANS FROM API ======
+        async function fetchPlans() {
+            console.log("Fetching plans from API...");
+            
+            try {
+                showLoading(true);
+                
+                // Add timestamp to prevent caching
+                const timestamp = new Date().getTime();
+                const apiUrl = `${MOCKAPI_URL}?timestamp=${timestamp}`;
+                
+                const response = await fetch(apiUrl);
+                
+                if (!response.ok) {
+                    throw new Error(`API Error: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                // Check if API returned valid data
+                if (Array.isArray(data) && data.length > 0) {
+                    allPlans = data;
+                    console.log(`✅ Loaded ${data.length} plans from API`);
+                } else {
+                    // Use backup plans if API returns empty or invalid data
+                    allPlans = [...backupPlans];
+                    console.log("⚠️ Using backup plans (API returned empty/invalid data)");
+                }
+                
+            } catch (error) {
+                console.error("❌ API fetch failed:", error);
+                // Use backup plans if API fails
+                allPlans = [...backupPlans];
+                console.log("⚠️ Using backup plans (API failed)");
+            }
+            
+            displayPlans(allPlans);
+            showLoading(false);
+        }
+
+        // ====== DISPLAY PLANS ======
+        function displayPlans(plans) {
+            const container = document.getElementById("plans-container");
+            container.innerHTML = "";
+
+            if (plans.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-3 text-center py-12">
+                        <p class="text-gray-500 text-lg">No plans found</p>
+                        <p class="text-gray-400">Try different filters or check back later</p>
+                    </div>
+                `;
+                return;
+            }
+
+            plans.forEach(plan => {
+                const badgeClass = plan.type === "prepaid" ? "prepaid-badge" : "postpaid-badge";
+                const badgeText = plan.type === "prepaid" ? "Prepaid" : "Postpaid";
+                
+                const card = document.createElement("div");
+                card.className = "plan-card bg-white p-5 rounded-xl shadow-md border border-gray-100";
+                card.innerHTML = `
+                    <div class="flex justify-between items-start mb-3">
+                        <div>
+                            <span class="${badgeClass} plan-badge">${badgeText}</span>
+                            <span class="ml-2 text-sm text-gray-500">${plan.operator}</span>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-emerald-600 font-bold text-2xl">₹${plan.price}</p>
+                            <p class="text-gray-500 text-sm">${plan.validity}</p>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-lg font-bold text-gray-800 mb-2">${plan.data}</h3>
+                    <p class="text-gray-600 mb-4">${plan.description || "Unlimited calls & SMS"}</p>
+                    
+                    <button class="select-plan-btn w-full primary-gradient text-white font-bold py-2 px-4 rounded-lg transition duration-300 primary-gradient-force hover:opacity-90" 
+                            data-plan-id="${plan.id}">
+                        Select Plan
+                    </button>
+                `;
+                
+                container.appendChild(card);
+            });
+            
+            // Re-attach event listeners for new buttons
+            attachPlanSelectionListeners();
+        }
+
+        // ====== FILTER FUNCTION ======
+        function filterPlans(filter) {
+            // Update active button
+            document.querySelectorAll(".filter-btn").forEach(btn => {
+                btn.classList.remove("active");
+                if (btn.dataset.filter === filter) {
+                    btn.classList.add("active");
+                }
+            });
+            
+            if (filter === "all") {
+                displayPlans(allPlans);
+                return;
+            }
+            
+            let filteredPlans = [];
+            
+            if (filter === "prepaid" || filter === "postpaid") {
+                filteredPlans = allPlans.filter(plan => plan.type === filter);
+            } else {
+                filteredPlans = allPlans.filter(
+                    plan => plan.operator.toLowerCase() === filter
+                );
+            }
+            
+            displayPlans(filteredPlans);
+        }
+
+        // ====== PLAN SELECTION ======
+        function attachPlanSelectionListeners() {
+            document.querySelectorAll(".select-plan-btn").forEach(btn => {
+                btn.addEventListener("click", function() {
+                    const planId = this.dataset.planId;
+                    selectedPlan = allPlans.find(plan => plan.id == planId);
+                    
+                    if (selectedPlan) {
+                        showPlanDetails(selectedPlan);
+                    }
+                });
+            });
+        }
+        
+        function showPlanDetails(plan) {
+            const modal = document.getElementById("selected-plan-modal");
+            const details = document.getElementById("plan-details");
+            
+            const badgeClass = plan.type === "prepaid" ? "prepaid-badge" : "postpaid-badge";
+            const badgeText = plan.type === "prepaid" ? "Prepaid" : "Postpaid";
+            
+            details.innerHTML = `
+                <div class="mb-4">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="${badgeClass} plan-badge">${badgeText}</span>
+                        <span class="text-sm text-gray-500">${plan.operator}</span>
+                    </div>
+                    <div class="text-3xl font-bold text-emerald-600 mb-2">₹${plan.price}</div>
+                </div>
+                
+                <div class="space-y-3 mb-6">
+                    <div class="flex justify-between">
+                        <span class="font-medium text-gray-700">Validity:</span>
+                        <span>${plan.validity}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="font-medium text-gray-700">Data:</span>
+                        <span>${plan.data}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="font-medium text-gray-700">Description:</span>
+                        <span class="text-right">${plan.description || "Unlimited calls & SMS"}</span>
+                    </div>
+                </div>
+                
+                <div class="bg-emerald-50 p-4 rounded-lg">
+                    <p class="text-sm text-emerald-700 font-medium">
+                        Total Amount: <span class="text-lg font-bold">₹${plan.price}</span>
+                    </p>
+                </div>
+            `;
+            
+            modal.classList.remove("hidden");
+        }
+
+        // ====== UI HELPERS ======
+        function showLoading(isLoading) {
+            const loadingEl = document.getElementById("loading");
+            const container = document.getElementById("plans-container");
+            
+            if (isLoading) {
+                loadingEl.classList.remove("hidden");
+                container.classList.add("hidden");
+            } else {
+                loadingEl.classList.add("hidden");
+                container.classList.remove("hidden");
+            }
+        }
+
+        // ====== INITIALIZE ======
+        document.addEventListener("DOMContentLoaded", () => {
+            // Fetch plans from API
+            fetchPlans();
+            
+            // Filter button event listeners
+            document.querySelectorAll(".filter-btn").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const filter = btn.dataset.filter;
+                    filterPlans(filter);
+                });
+            });
+            
+            // Modal buttons
+            document.getElementById("proceed-payment").addEventListener("click", () => {
+                if (selectedPlan) {
+                    // Save to localStorage
+                    localStorage.setItem("selectedPlan", JSON.stringify(selectedPlan));
+                    console.log("Plan saved:", selectedPlan);
+                    
+                    // Redirect to recharge page
+                    window.location.href = "recharge.html";
+                }
+            });
+            
+            document.getElementById("cancel-selection").addEventListener("click", () => {
+                document.getElementById("selected-plan-modal").classList.add("hidden");
+            });
+            
+            // Close modal when clicking outside
+            document.getElementById("selected-plan-modal").addEventListener("click", (e) => {
+                if (e.target === document.getElementById("selected-plan-modal")) {
+                    document.getElementById("selected-plan-modal").classList.add("hidden");
+                }
+            });
+        });
+    </script>
+
+    <!-- Include main script -->
+    <script src="script.js"></script>
+</body>
+</html>
