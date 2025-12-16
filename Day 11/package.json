@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "express": "^5.2.1",
+    "mongoose": "^9.0.1"
+  },
+  "name": "express2",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
